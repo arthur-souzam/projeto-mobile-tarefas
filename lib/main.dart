@@ -29,7 +29,7 @@ class AppTarefas extends StatelessWidget {
             children: [
               Icon(Icons.check_circle_outline, size: 80, color: Colors.blue),
               SizedBox(height: 16),
-              Text('Em construção...', style: TextStyle(fontSize: 20)),
+              Text('teste...', style: TextStyle(fontSize: 20)),
             ],
           ),
         ),
