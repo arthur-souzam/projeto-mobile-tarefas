@@ -22,29 +22,42 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<TarefasProvider>();
+    final cor = Theme.of(context).colorScheme.primary;
     final proxima = provider.proximaTarefa;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+     backgroundColor: const Color(0xFFF5F5F5),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 40),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+           crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.access_time_outlined,
-                  size: 80, color: Colors.white),
-              const SizedBox(height: 16),
-              const Text(
-                'Tarefas',
-                style: TextStyle(
-                    fontSize: 32,
+             const Spacer(),
+                Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: cor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Icon(Icons.task_alt, size: 36, color: cor),
+                ),
+                const SizedBox(height: 24),
+                const Text(
+                  'Olá,\nbem-vindo.',
+                  style: TextStyle(
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
+                    height: 1.2,
+                    color: Color(0xFF1A1A1A),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Mantendo você em dia.',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                const Spacer(),
               const Text(
                 'Mantendo você em dia',
                 style: TextStyle(fontSize: 16, color: Colors.white70),
@@ -52,59 +65,107 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
               ),
               const SizedBox(height: 48),
               if (proxima != null) ...[
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.white30),
+                                const Text(
+                    'PRÓXIMA A VENCER',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                      letterSpacing: 1.5,
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('⏰ Mais próxima de vencer:',
-                          style:
-                              TextStyle(color: Colors.white70, fontSize: 13)),
-                      const SizedBox(height: 8),
-                      Text(
-                        proxima.titulo,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Prevista para: ${_formatarData(proxima.dataPrevista)}',
-                        style: const TextStyle(
-                            color: Colors.white70, fontSize: 13),
-                      ),
-                    ],
+                  const SizedBox(height: 10),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.06),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 4,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: cor,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                proxima.titulo,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF1A1A1A),
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                _formatarData(proxima.dataPrevista),
+                                style: const TextStyle(fontSize: 13, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, color: Colors.grey[400]),
+                      ],
+                    ),
                   ),
-                ),
                 const SizedBox(height: 32),
-              ] else ...[
-                const Text('Sem tarefas pendentes!',
-                    style: TextStyle(color: Colors.white70, fontSize: 16)),
-                const SizedBox(height: 32),
+                ] else ...[
+                            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.check_circle_outline, color: Colors.green),
+                  SizedBox(width: 12),
+                  Text('Sem tarefas pendentes!',
+                      style: TextStyle(color: Colors.grey, fontSize: 15)),
+                ],
+              ),
+            ),
               ],
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () =>
                       Navigator.pushReplacementNamed(context, Rotas.listagem),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Theme.of(context).colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                 style: ElevatedButton.styleFrom(
+                    backgroundColor: cor,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
+                        borderRadius: BorderRadius.circular(14)),
+                    elevation: 0,
                   ),
-                  child: const Text('Iniciar',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
-                ),
+                  child: const Text('Começar',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                  ),
               ),
             ],
           ),
