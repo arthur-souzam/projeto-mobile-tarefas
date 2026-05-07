@@ -85,7 +85,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
                 ),
                 const SizedBox(height: 32),
               ] else ...[
-                const Text('Sem tarefas pendente',
+                const Text('Sem tarefas pendentes!',
                     style: TextStyle(color: Colors.white70, fontSize: 16)),
                 const SizedBox(height: 32),
               ],
