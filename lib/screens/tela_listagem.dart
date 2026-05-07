@@ -13,26 +13,8 @@ class TelaListagem extends StatefulWidget {
   State<TelaListagem> createState() => _TelaListagemState();
 }
 
-class _TelaListagemState extends State<TelaListagem>
-    with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<TarefasProvider>().carregarTarefas();
-      context.read<EtiquetasProvider>().carregarEtiquetas();
-    });
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _TelaListagemState extends State<TelaListagem> {
+  int _abaSelecionada = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,16 +32,6 @@ class _TelaListagemState extends State<TelaListagem>
             },
           ),
         ],
-        bottom: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          tabs: const [
-            Tab(text: 'Todas'),
-            Tab(text: 'Importantes'),
-            Tab(text: 'Realizadas'),
-            Tab(text: 'Atrasadas'),
-          ],
-        ),
       ),
       body: Consumer2<TarefasProvider, EtiquetasProvider>(
         builder: (context, tarefasProvider, etiquetasProvider, _) {
@@ -71,21 +43,25 @@ class _TelaListagemState extends State<TelaListagem>
           final atrasadas = todas.where((t) {
             final data = DateTime.tryParse(t.dataPrevista);
             return data != null &&
-                data.isBefore(
-                    DateTime(hoje.year, hoje.month, hoje.day)) &&
+                data.isBefore(DateTime(hoje.year, hoje.month, hoje.day)) &&
                 !t.realizada;
           }).toList();
 
-          return TabBarView(
-            controller: _tabController,
-            children: [
-              _buildLista(todas, etiquetasProvider),
-              _buildLista(importantes, etiquetasProvider),
-              _buildLista(realizadas, etiquetasProvider),
-              _buildLista(atrasadas, etiquetasProvider),
-            ],
-          );
+          final listas = [todas, importantes, realizadas, atrasadas];
+
+          return _buildLista(listas[_abaSelecionada], etiquetasProvider);
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _abaSelecionada,
+        onTap: (index) => setState(() => _abaSelecionada = index),
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Todas'),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Importantes'),
+          BottomNavigationBarItem(icon: Icon(Icons.check_circle), label: 'Realizadas'),
+          BottomNavigationBarItem(icon: Icon(Icons.warning), label: 'Atrasadas'),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -98,8 +74,7 @@ class _TelaListagemState extends State<TelaListagem>
     );
   }
 
-  Widget _buildLista(
-      List<Tarefa> tarefas, EtiquetasProvider etiquetasProvider) {
+  Widget _buildLista(List<Tarefa> tarefas, EtiquetasProvider etiquetasProvider) {
     if (tarefas.isEmpty) {
       return const Center(
         child: Column(

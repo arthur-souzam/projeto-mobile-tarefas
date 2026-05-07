@@ -33,7 +33,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(Icons.add_task_rounded,
+              const Icon(Icons.access_time_outlined,
                   size: 80, color: Colors.white),
               const SizedBox(height: 16),
               const Text(
