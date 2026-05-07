@@ -33,11 +33,11 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(Icons.check_circle_outline,
+              const Icon(Icons.add_task_rounded,
                   size: 80, color: Colors.white),
               const SizedBox(height: 16),
               const Text(
-                'Minhas Tarefas',
+                'Tarefas',
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Organize sua vida com simplicidade',
+                'Mantendo você em dia',
                 style: TextStyle(fontSize: 16, color: Colors.white70),
                 textAlign: TextAlign.center,
               ),
