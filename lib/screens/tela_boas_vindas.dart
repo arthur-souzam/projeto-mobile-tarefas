@@ -85,7 +85,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
                 ),
                 const SizedBox(height: 32),
               ] else ...[
-                const Text('Nenhuma tarefa pendente 🎉',
+                const Text('Sem tarefas pendente',
                     style: TextStyle(color: Colors.white70, fontSize: 16)),
                 const SizedBox(height: 32),
               ],
@@ -101,7 +101,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: const Text('Entrar no App',
+                  child: const Text('Iniciar',
                       style: TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
