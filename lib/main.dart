@@ -61,7 +61,10 @@ class AppTarefas extends StatelessWidget {
               final tarefa = settings.arguments as Tarefa;
               return MaterialPageRoute(builder: (_) => TelaFormTarefa(tarefaParaEditar: tarefa));
             case Rotas.detalhesTarefa:
-              return MaterialPageRoute(builder: (_) => const TelaDetalhes());
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (_) => const TelaDetalhes(),
+              );
             case Rotas.etiquetas:
               return MaterialPageRoute(builder: (_) => const TelaEtiquetas());
             default:
