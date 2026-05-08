@@ -30,17 +30,16 @@ class AppTarefas extends StatelessWidget {
         title: 'App Tarefas',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF81C784)),
-          useMaterial3: true,
-              appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFF81C784),
-            foregroundColor: Colors.white,
-            elevation: 2,
-          ),
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF81C784),
-            foregroundColor: Colors.white,
-          ),
+              colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2E7D32)),
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Color(0xFF2E7D32),
+              foregroundColor: Colors.white,
+              elevation: 2,
+            ),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              backgroundColor: Color(0xFF2E7D32),
+              foregroundColor: Colors.white,
+            ),
         ),
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,

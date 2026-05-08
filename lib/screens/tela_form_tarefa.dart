@@ -127,7 +127,7 @@ class _TelaFormTarefaState extends State<TelaFormTarefa> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<int?>(
-                value: _etiquetaIdSelecionada,
+                initialValue: _etiquetaIdSelecionada,
                 decoration: const InputDecoration(
                   labelText: 'Etiqueta',
                   border: OutlineInputBorder(),

@@ -22,7 +22,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<TarefasProvider>();
-    final cor = Theme.of(context).colorScheme.primary;
+    const cor = Color(0xFF2E7D32);
     final proxima = provider.proximaTarefa;
 
     return Scaffold(
@@ -40,7 +40,7 @@ class _TelaBoasVindasState extends State<TelaBoasVindas> {
                     color: cor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Icon(Icons.task_alt, size: 36, color: cor),
+                  child: Icon(Icons.timer, size: 36, color: cor),
                 ),
                 const SizedBox(height: 24),
                 const Text(
